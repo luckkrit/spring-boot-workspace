@@ -1,0 +1,86 @@
+ [
+  {
+    "productId": 1,
+    "quantity": 4,
+    "id": 1,
+    "cartId": 1
+  },
+  {
+    "productId": 2,
+    "quantity": 1,
+    "id": 1,
+    "cartId": 1
+  },
+  {
+    "productId": 3,
+    "quantity": 6,
+    "id": 1,
+    "cartId": 1
+  },
+  {
+    "productId": 2,
+    "quantity": 4,
+    "id": 2,
+    "cartId": 2
+  },
+  {
+    "productId": 1,
+    "quantity": 10,
+    "id": 2,
+    "cartId": 2
+  },
+  {
+    "productId": 5,
+    "quantity": 2,
+    "id": 2,
+    "cartId": 2
+  },
+  {
+    "productId": 1,
+    "quantity": 2,
+    "id": 3,
+    "cartId": 3
+  },
+  {
+    "productId": 9,
+    "quantity": 1,
+    "id": 3,
+    "cartId": 3
+  },
+  {
+    "productId": 1,
+    "quantity": 4,
+    "id": 4,
+    "cartId": 4
+  },
+  {
+    "productId": 7,
+    "quantity": 1,
+    "id": 5,
+    "cartId": 5
+  },
+  {
+    "productId": 8,
+    "quantity": 1,
+    "id": 5,
+    "cartId": 5
+  },
+  {
+    "productId": 10,
+    "quantity": 2,
+    "id": 6,
+    "cartId": 6
+  },
+  {
+    "productId": 12,
+    "quantity": 3,
+    "id": 6,
+    "cartId": 6
+  },
+  {
+    "productId": 18,
+    "quantity": 1,
+    "id": 7,
+    "cartId": 7
+  }
+]

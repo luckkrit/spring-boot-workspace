@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "userDetailsId": 1,
+    "addressId": 1,
+    "email": "john@gmail.com",
+    "username": "johnd",
+    "password": "m38rmF$"
+  },
+  {
+    "id": 2,
+    "userDetailsId": 2,
+    "addressId": 2,
+    "email": "morrison@gmail.com",
+    "username": "mor_2314",
+    "password": "83r5^_"
+  },
+  {
+    "id": 3,
+    "userDetailsId": 3,
+    "addressId": 3,
+    "email": "kevin@gmail.com",
+    "username": "kevinryan",
+    "password": "kev02937@"
+  },
+  {
+    "id": 4,
+    "userDetailsId": 4,
+    "addressId": 4,
+    "email": "don@gmail.com",
+    "username": "donero",
+    "password": "ewedon"
+  },
+  {
+    "id": 5,
+    "userDetailsId": 5,
+    "addressId": 5,
+    "email": "derek@gmail.com",
+    "username": "derek",
+    "password": "jklg*_56"
+  },
+  {
+    "id": 6,
+    "userDetailsId": 6,
+    "addressId": 6,
+    "email": "david_r@gmail.com",
+    "username": "david_r",
+    "password": "3478*#54"
+  },
+  {
+    "id": 7,
+    "userDetailsId": 7,
+    "addressId": 7,
+    "email": "miriam@gmail.com",
+    "username": "snyder",
+    "password": "f238&@*$"
+  },
+  {
+    "id": 8,
+    "userDetailsId": 8,
+    "addressId": 8,
+    "email": "william@gmail.com",
+    "username": "hopkins",
+    "password": "William56$hj"
+  },
+  {
+    "id": 9,
+    "userDetailsId": 9,
+    "addressId": 9,
+    "email": "kate@gmail.com",
+    "username": "kate_h",
+    "password": "kfejk@*_"
+  },
+  {
+    "id": 10,
+    "userDetailsId": 10,
+    "addressId": 10,
+    "email": "jimmie@gmail.com",
+    "username": "jimmie_k",
+    "password": "klein*#%*"
+  }
+]

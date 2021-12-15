@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "geolocationId": 1,
+    "city": "kilcoole",
+    "street": "new road",
+    "number": 7682,
+    "zipcode": "12926-3874"
+  },
+  {
+    "id": 2,
+    "geolocationId": 2,
+    "city": "kilcoole",
+    "street": "Lovers Ln",
+    "number": 7267,
+    "zipcode": "12926-3874"
+  },
+  {
+    "id": 3,
+    "geolocationId": 3,
+    "city": "Cullman",
+    "street": "Frances Ct",
+    "number": 86,
+    "zipcode": "29567-1452"
+  },
+  {
+    "id": 4,
+    "geolocationId": 4,
+    "city": "San Antonio",
+    "street": "Hunters Creek Dr",
+    "number": 6454,
+    "zipcode": "98234-1734"
+  },
+  {
+    "id": 5,
+    "geolocationId": 5,
+    "city": "san Antonio",
+    "street": "adams St",
+    "number": 245,
+    "zipcode": "80796-1234"
+  },
+  {
+    "id": 6,
+    "geolocationId": 6,
+    "city": "el paso",
+    "street": "prospect st",
+    "number": 124,
+    "zipcode": "12346-0456"
+  },
+  {
+    "id": 7,
+    "geolocationId": 7,
+    "city": "fresno",
+    "street": "saddle st",
+    "number": 1342,
+    "zipcode": "96378-0245"
+  },
+  {
+    "id": 8,
+    "geolocationId": 8,
+    "city": "mesa",
+    "street": "vally view ln",
+    "number": 1342,
+    "zipcode": "96378-0245"
+  },
+  {
+    "id": 9,
+    "geolocationId": 9,
+    "city": "miami",
+    "street": "avondale ave",
+    "number": 345,
+    "zipcode": "96378-0245"
+  },
+  {
+    "id": 10,
+    "geolocationId": 10,
+    "city": "fort wayne",
+    "street": "oak lawn ave",
+    "number": 526,
+    "zipcode": "10256-4532"
+  }
+]

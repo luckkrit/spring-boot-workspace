@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "email": "john@gmail.com",
+    "firstname": "john",
+    "lastname": "doe",
+    "phone": "1-570-236-7033"
+  },
+  {
+    "id": 2,
+    "email": "morrison@gmail.com",
+    "firstname": "david",
+    "lastname": "morrison",
+    "phone": "1-570-236-7033"
+  },
+  {
+    "id": 3,
+    "email": "kevin@gmail.com",
+    "firstname": "kevin",
+    "lastname": "ryan",
+    "phone": "1-567-094-1345"
+  },
+  {
+    "id": 4,
+    "email": "don@gmail.com",
+    "firstname": "don",
+    "lastname": "romer",
+    "phone": "1-765-789-6734"
+  },
+  {
+    "id": 5,
+    "email": "derek@gmail.com",
+    "firstname": "derek",
+    "lastname": "powell",
+    "phone": "1-956-001-1945"
+  },
+  {
+    "id": 6,
+    "email": "david_r@gmail.com",
+    "firstname": "david",
+    "lastname": "russell",
+    "phone": "1-678-345-9856"
+  },
+  {
+    "id": 7,
+    "email": "miriam@gmail.com",
+    "firstname": "miriam",
+    "lastname": "snyder",
+    "phone": "1-123-943-0563"
+  },
+  {
+    "id": 8,
+    "email": "william@gmail.com",
+    "firstname": "william",
+    "lastname": "hopkins",
+    "phone": "1-478-001-0890"
+  },
+  {
+    "id": 9,
+    "email": "kate@gmail.com",
+    "firstname": "kate",
+    "lastname": "hale",
+    "phone": "1-678-456-1934"
+  },
+  {
+    "id": 10,
+    "email": "jimmie@gmail.com",
+    "firstname": "jimmie",
+    "lastname": "klein",
+    "phone": "1-104-001-4567"
+  }
+]
