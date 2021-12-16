@@ -1,14 +1,15 @@
 package com.k9.backend.shopee;
 
+import java.util.List;
+
 import com.k9.backend.shopee.models.Address;
-import com.k9.backend.shopee.models.Category;
+import com.k9.backend.shopee.models.Product;
 import com.k9.backend.shopee.models.User;
 import com.k9.backend.shopee.repository.AddressRepository;
-import com.k9.backend.shopee.repository.CategoryRepository;
 import com.k9.backend.shopee.repository.GeolocationRepository;
-import com.k9.backend.shopee.repository.ProductRepository;
 import com.k9.backend.shopee.repository.UserDetailRepository;
 import com.k9.backend.shopee.repository.UserRepository;
+import com.k9.backend.shopee.services.CategoryService;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -23,19 +24,11 @@ public class ShopeeApplication {
 	}
 
 	@Bean
-	public CommandLineRunner showProductAndCategoryData(ProductRepository productRepository,
-			CategoryRepository categoryRepository) {
+	public CommandLineRunner showProductAndCategoryData(CategoryService categoryService) {
 		return (args -> {
-			System.out.println(productRepository.count() + " " + categoryRepository.count());
-			categoryRepository.findById(3L).ifPresent((category -> this.showProduct(category)));
+			List<Product> products = categoryService.getProducts(3L);
+			products.stream().forEach(product -> System.out.println(product.getTitle()));
 		});
-	}
-
-	public void showProduct(Category category) {
-
-		category.getProducts().forEach((product -> {
-			System.out.println(product.getTitle());
-		}));
 	}
 
 	@Bean
