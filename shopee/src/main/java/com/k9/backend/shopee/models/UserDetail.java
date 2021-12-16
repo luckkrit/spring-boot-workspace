@@ -3,12 +3,10 @@ package com.k9.backend.shopee.models;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
@@ -16,28 +14,25 @@ import javax.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 
 @Entity
-@Table(name = "addresses")
+@Table(name = "userdetails")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Address {
+public class UserDetail {
 
     @NotBlank
-    private String zipcode;
-    private Long number;
+    private String firstname;
     @NotBlank
-    private String city;
-    @NotBlank
-    private String street;
+    private String phone;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotBlank
+    private String email;
+    @NotBlank
+    private String lastname;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn
-    private Geolocation location;
-
-    @OneToOne(mappedBy = "address")
-    private User user;
+    @OneToOne(mappedBy = "userDetail")
+    User user;
 
 }

@@ -2,10 +2,13 @@ package com.k9.backend.shopee;
 
 import com.k9.backend.shopee.models.Address;
 import com.k9.backend.shopee.models.Category;
+import com.k9.backend.shopee.models.User;
 import com.k9.backend.shopee.repository.AddressRepository;
 import com.k9.backend.shopee.repository.CategoryRepository;
 import com.k9.backend.shopee.repository.GeolocationRepository;
 import com.k9.backend.shopee.repository.ProductRepository;
+import com.k9.backend.shopee.repository.UserDetailRepository;
+import com.k9.backend.shopee.repository.UserRepository;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -49,4 +52,15 @@ public class ShopeeApplication {
 				+ address.getLocation().getLongtitude());
 	}
 
+	@Bean
+	public CommandLineRunner showUserAndUserDetailsData(UserRepository userRepository,
+			UserDetailRepository userDetailRepository) {
+		return (args -> {
+			userRepository.findById(1L).ifPresent((user -> this.showUserDetails(user)));
+		});
+	}
+
+	private void showUserDetails(User user) {
+		System.out.println(user.getUserDetail().getFirstname());
+	}
 }

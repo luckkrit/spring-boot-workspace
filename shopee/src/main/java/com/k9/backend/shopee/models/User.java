@@ -16,28 +16,27 @@ import javax.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 
 @Entity
-@Table(name = "addresses")
+@Table(name = "users")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Address {
+public class User {
 
     @NotBlank
-    private String zipcode;
-    private Long number;
-    @NotBlank
-    private String city;
-    @NotBlank
-    private String street;
+    private String password;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotBlank
+    private String email;
+    @NotBlank
+    private String username;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn
-    private Geolocation location;
+    Address address;
 
-    @OneToOne(mappedBy = "address")
-    private User user;
-
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn
+    UserDetail userDetail;
 }
