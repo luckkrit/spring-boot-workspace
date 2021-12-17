@@ -2,16 +2,6 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Spring Boot-ShopeeBackendApplication<shopee-backend>",
-            "request": "launch",
-            "cwd": "${workspaceFolder}",
-            "console": "internalConsole",
-            "mainClass": "com.k9.shopee.backend.shopeebackend.ShopeeBackendApplication",
-            "projectName": "shopee-backend",
-            "args": ""
-        },
-        {
-            "type": "java",
             "name": "Spring Boot-ShopeeApplication<shopee>",
             "request": "launch",
             "cwd": "${workspaceFolder}",
