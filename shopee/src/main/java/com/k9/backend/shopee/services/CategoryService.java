@@ -2,6 +2,7 @@ package com.k9.backend.shopee.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import com.k9.backend.shopee.models.Category;
 import com.k9.backend.shopee.models.Product;
@@ -18,16 +19,18 @@ import lombok.RequiredArgsConstructor;
 public class CategoryService {
     private final CategoryRepository categoryRepository;
 
-    private Category getCategory(Long categoryId) {
-        return categoryRepository.findById(categoryId).orElse(null);
+    private Optional<Category> getCategory(Long categoryId) {
+        return categoryRepository.findById(categoryId);
     }
 
     @Transactional
     public List<Product> getProducts(Long categoryId) {
-        var category = this.getCategory(categoryId);
-        if (category == null)
+        var optionalCategory = this.getCategory(categoryId);
+        if (!optionalCategory.isPresent())
             return new ArrayList<Product>();
-        Hibernate.initialize(category.getProducts());
+        var category = optionalCategory.get();
+        if (!Hibernate.isInitialized(category.getProducts()))
+            Hibernate.initialize(category.getProducts());
         return category.getProducts();
     }
 }

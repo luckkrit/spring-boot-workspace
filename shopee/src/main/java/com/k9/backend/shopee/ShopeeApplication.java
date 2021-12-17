@@ -7,17 +7,23 @@ import com.k9.backend.shopee.models.Product;
 import com.k9.backend.shopee.models.User;
 import com.k9.backend.shopee.repository.AddressRepository;
 import com.k9.backend.shopee.repository.GeolocationRepository;
+import com.k9.backend.shopee.repository.ProductRepository;
 import com.k9.backend.shopee.repository.UserDetailRepository;
 import com.k9.backend.shopee.repository.UserRepository;
+import com.k9.backend.shopee.services.CartService;
 import com.k9.backend.shopee.services.CategoryService;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @SpringBootApplication
 public class ShopeeApplication {
+
+	Logger logger = LoggerFactory.getLogger(ShopeeApplication.class);
 
 	public static void main(String[] args) {
 		SpringApplication.run(ShopeeApplication.class, args);
@@ -27,7 +33,7 @@ public class ShopeeApplication {
 	public CommandLineRunner showProductAndCategoryData(CategoryService categoryService) {
 		return (args -> {
 			List<Product> products = categoryService.getProducts(3L);
-			products.stream().forEach(product -> System.out.println(product.getTitle()));
+			products.stream().forEach(product -> logger.info(product.getTitle()));
 		});
 	}
 
@@ -35,13 +41,13 @@ public class ShopeeApplication {
 	public CommandLineRunner showAddressAndGeolocationData(AddressRepository addressRepository,
 			GeolocationRepository geolocationRepository) {
 		return (args -> {
-			System.out.println(addressRepository.count() + " " + geolocationRepository.count());
+			logger.info(addressRepository.count() + " " + geolocationRepository.count());
 			addressRepository.findById(3L).ifPresent((address -> this.showAddress(address)));
 		});
 	}
 
 	public void showAddress(Address address) {
-		System.out.println(address.getCity() + " " + address.getLocation().getLatitude() + " "
+		logger.info(address.getCity() + " " + address.getLocation().getLatitude() + " "
 				+ address.getLocation().getLongtitude());
 	}
 
@@ -54,6 +60,22 @@ public class ShopeeApplication {
 	}
 
 	private void showUserDetails(User user) {
-		System.out.println(user.getUserDetail().getFirstname());
+		logger.info(user.getUserDetail().getFirstname());
+	}
+
+	@Bean
+	public CommandLineRunner showProductRating(ProductRepository productRepository) {
+		return (args -> {
+			productRepository.findById(3L)
+					.ifPresent((product -> logger.info(product.getProductRating().getRate().toString())));
+
+		});
+	}
+
+	@Bean
+	public CommandLineRunner showCart(CartService service) {
+		return (args -> {
+			logger.info(service.getUserDetail(3L).getFirstname());
+		});
 	}
 }
