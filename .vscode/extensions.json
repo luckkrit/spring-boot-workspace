@@ -1,0 +1,19 @@
+{
+    "recommendations": [
+        "vscjava.vscode-java-debug",
+        "redhat.fabric8-analytics",
+        "vscjava.vscode-java-pack",
+        "redhat.java",
+        "gabrielbb.vscode-lombok",
+        "vscjava.vscode-maven",
+        "vscjava.vscode-java-dependency",
+        "vscjava.vscode-spring-boot-dashboard",
+        "pivotal.vscode-boot-dev-pack",
+        "pivotal.vscode-spring-boot",
+        "vscjava.vscode-spring-initializr",
+        "tabnine.tabnine-vscode",
+        "vscjava.vscode-java-test",
+        "vscodevim.vim",
+        "visualstudioexptteam.vscodeintellicode"
+    ]
+}
