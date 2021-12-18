@@ -19,18 +19,21 @@ import lombok.RequiredArgsConstructor;
 public class CategoryService {
     private final CategoryRepository categoryRepository;
 
-    private Optional<Category> getCategory(Long categoryId) {
-        return categoryRepository.findById(categoryId);
+    public Optional<Category> getCategory(Long categoryId) {
+        return this.categoryRepository.findById(categoryId);
     }
+    // private Optional<Category> getCategory(Long categoryId) {
+    // return categoryRepository.findById(categoryId);
+    // }
 
-    @Transactional
-    public List<Product> getProducts(Long categoryId) {
-        var optionalCategory = this.getCategory(categoryId);
-        if (!optionalCategory.isPresent())
-            return new ArrayList<Product>();
-        var category = optionalCategory.get();
-        if (!Hibernate.isInitialized(category.getProducts()))
-            Hibernate.initialize(category.getProducts());
-        return category.getProducts();
-    }
+    // @Transactional
+    // public List<Product> getProducts(Long categoryId) {
+    // var optionalCategory = this.getCategory(categoryId);
+    // if (!optionalCategory.isPresent())
+    // return new ArrayList<Product>();
+    // var category = optionalCategory.get();
+    // if (!Hibernate.isInitialized(category.getProducts()))
+    // Hibernate.initialize(category.getProducts());
+    // return category.getProducts();
+    // }
 }
