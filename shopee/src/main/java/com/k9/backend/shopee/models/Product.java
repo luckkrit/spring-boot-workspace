@@ -6,9 +6,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.FetchType;
+
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.validation.constraints.NotBlank;
 
@@ -38,10 +42,13 @@ public class Product {
     @NotBlank
     private String image;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "categoryId")
     private Category category;
 
     @OneToOne(mappedBy = "product")
     private ProductRating productRating;
+
+    @OneToMany(mappedBy = "product")
+    private List<CartProduct> cartProducts;
 }

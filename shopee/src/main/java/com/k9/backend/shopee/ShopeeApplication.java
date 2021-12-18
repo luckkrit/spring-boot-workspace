@@ -78,4 +78,11 @@ public class ShopeeApplication {
 			logger.info(service.getUserDetail(3L).getFirstname());
 		});
 	}
+
+	@Bean
+	public CommandLineRunner showCartProducts(CartService service) {
+		return (args -> {
+			service.getProducts(4L).stream().forEach(product -> logger.info(product.getTitle()));
+		});
+	}
 }

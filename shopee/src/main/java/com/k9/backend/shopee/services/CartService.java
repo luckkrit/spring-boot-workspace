@@ -1,8 +1,12 @@
 package com.k9.backend.shopee.services;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import com.k9.backend.shopee.models.Cart;
+import com.k9.backend.shopee.models.Product;
 import com.k9.backend.shopee.models.User;
 import com.k9.backend.shopee.models.UserDetail;
 import com.k9.backend.shopee.repository.CartRepository;
@@ -41,6 +45,21 @@ public class CartService {
             return optionalUser.get().getUserDetail();
         } else {
             return null;
+        }
+    }
+
+    @Transactional
+    public List<Product> getProducts(Long cartId) {
+        var optionalCart = this.getCart(cartId);
+        if (optionalCart.isPresent()) {
+            var cart = optionalCart.get();
+            if (!Hibernate.isInitialized(cart.getCartProducts())) {
+                Hibernate.initialize(cart.getCartProducts());
+            }
+            return cart.getCartProducts().stream().map(cartProduct -> cartProduct.getProduct())
+                    .collect(Collectors.toList());
+        } else {
+            return new ArrayList<Product>();
         }
     }
 }
