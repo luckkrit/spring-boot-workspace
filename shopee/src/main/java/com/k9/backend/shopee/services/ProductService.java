@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import com.k9.backend.shopee.dtos.AddProductDTO;
 import com.k9.backend.shopee.dtos.ProductDTO;
+import com.k9.backend.shopee.dtos.UpdateProductDTO;
 import com.k9.backend.shopee.models.Product;
 import com.k9.backend.shopee.repository.CategoryRepository;
 import com.k9.backend.shopee.repository.ProductRepository;
@@ -114,13 +115,45 @@ public class ProductService {
                         product.setDescription(addProductDTO.getDescription());
                         product.setPrice(addProductDTO.getPrice());
                         product.setImage(addProductDTO.getImage());
-                        this.productRepository.save(product);
+                        product = this.productRepository.save(product);
                         var productDTO = new ProductDTO(product.getId(), product.getTitle(), product.getPrice(),
                                         optionalCategory.get().getTitle(), product.getDescription(),
                                         product.getImage());
                         return Optional.of(productDTO);
                 } else {
                         return Optional.ofNullable(null);
+                }
+        }
+
+        public Optional<ProductDTO> updateProduct(Long productId, UpdateProductDTO updateProductDTO) {
+                var optionalProduct = this.productRepository.findById(productId);
+                var optionalCategory = this.categoryRepository.findById(updateProductDTO.getCategoryId());
+                if (optionalProduct.isPresent() && optionalCategory.isPresent()) {
+
+                        // Update product
+                        var category = optionalCategory.get();
+                        var product = optionalProduct.get();
+                        product.setTitle(updateProductDTO.getTitle());
+                        product.setPrice(updateProductDTO.getPrice());
+                        product.setDescription(updateProductDTO.getDescription());
+                        product.setImage(updateProductDTO.getImage());
+                        product.setCategory(category);
+                        this.productRepository.save(product);
+
+                        var productDTO = new ProductDTO(product.getId(), updateProductDTO.getTitle(),
+                                        updateProductDTO.getPrice(),
+                                        category.getTitle(), updateProductDTO.getDescription(),
+                                        updateProductDTO.getImage());
+                        return Optional.of(productDTO);
+                } else {
+                        return Optional.ofNullable(null);
+                }
+        }
+
+        public void deleteProduct(Long productId) {
+                var optionalProduct = this.productRepository.findById(productId);
+                if (optionalProduct.isPresent()) {
+                        this.productRepository.delete(optionalProduct.get());
                 }
         }
 }

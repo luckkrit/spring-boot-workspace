@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
@@ -29,7 +30,8 @@ public class User {
     @NotBlank
     private String password;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "userSeqGen", sequenceName = "userSeq", initialValue = 11, allocationSize = 100)
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "userSeqGen")
     private Long id;
     @NotBlank
     private String email;

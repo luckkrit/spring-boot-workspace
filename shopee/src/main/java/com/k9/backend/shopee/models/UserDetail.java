@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
@@ -25,7 +26,8 @@ public class UserDetail {
     @NotBlank
     private String phone;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "userDetailSeqGen", sequenceName = "userDetailSeq", initialValue = 11, allocationSize = 100)
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "userDetailSeqGen")
     private Long id;
     @NotBlank
     private String email;

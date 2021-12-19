@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -20,7 +21,8 @@ import lombok.AllArgsConstructor;
 public class Geolocation {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "geolocationSeqGen", sequenceName = "geolocationSeq", initialValue = 11, allocationSize = 100)
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "geolocationSeqGen")
     private Long id;
     private Float latitude;
     private Float longtitude;

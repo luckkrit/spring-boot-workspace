@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -22,7 +23,8 @@ public class CartProduct {
 
     private Long quantity;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "cartProductSeqGen", sequenceName = "cartProductSeq", initialValue = 15, allocationSize = 100)
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "cartProductSeqGen")
     private Long id;
 
     @ManyToOne

@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
@@ -30,7 +31,8 @@ public class Address {
     @NotBlank
     private String street;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "addressSeqGen", sequenceName = "addressSeq", initialValue = 11, allocationSize = 100)
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "addressSeqGen")
     private Long id;
 
     @OneToOne

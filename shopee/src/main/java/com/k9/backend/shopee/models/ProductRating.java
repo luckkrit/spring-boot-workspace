@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -24,7 +25,8 @@ public class ProductRating {
     private Float rate;
     private Long count;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "productRatingSeqGen", sequenceName = "productRatingSeq", initialValue = 21, allocationSize = 100)
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "productRatingSeqGen")
     private Long id;
 
     @OneToOne
