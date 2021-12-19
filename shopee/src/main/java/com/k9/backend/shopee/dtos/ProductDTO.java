@@ -1,4 +1,4 @@
-package com.k9.backend.shopee.dto;
+package com.k9.backend.shopee.dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

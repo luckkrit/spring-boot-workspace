@@ -3,7 +3,9 @@ package com.k9.backend.shopee.services;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
+import com.k9.backend.shopee.dtos.CategoryDTO;
 import com.k9.backend.shopee.models.Category;
 import com.k9.backend.shopee.models.Product;
 import com.k9.backend.shopee.repository.CategoryRepository;
@@ -22,18 +24,9 @@ public class CategoryService {
     public Optional<Category> getCategory(Long categoryId) {
         return this.categoryRepository.findById(categoryId);
     }
-    // private Optional<Category> getCategory(Long categoryId) {
-    // return categoryRepository.findById(categoryId);
-    // }
 
-    // @Transactional
-    // public List<Product> getProducts(Long categoryId) {
-    // var optionalCategory = this.getCategory(categoryId);
-    // if (!optionalCategory.isPresent())
-    // return new ArrayList<Product>();
-    // var category = optionalCategory.get();
-    // if (!Hibernate.isInitialized(category.getProducts()))
-    // Hibernate.initialize(category.getProducts());
-    // return category.getProducts();
-    // }
+    public List<CategoryDTO> getAllCategories() {
+        return this.categoryRepository.findAll().stream()
+                .map((category -> new CategoryDTO(category.getId(), category.getTitle()))).collect(Collectors.toList());
+    }
 }
