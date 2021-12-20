@@ -1,9 +1,5 @@
 package com.k9.backend.shopee.models;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,6 +11,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "addresses")
@@ -31,8 +29,8 @@ public class Address {
     @NotBlank
     private String street;
     @Id
-    @SequenceGenerator(name = "addressSeqGen", sequenceName = "addressSeq", initialValue = 11, allocationSize = 100)
-    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "addressSeqGen")
+    @SequenceGenerator(name = "addressSeqGen", sequenceName = "addressSeq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "addressSeqGen")
     private Long id;
 
     @OneToOne

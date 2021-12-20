@@ -1,18 +1,14 @@
 package com.k9.backend.shopee.services;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 import com.k9.backend.shopee.dtos.CategoryDTO;
 import com.k9.backend.shopee.models.Category;
-import com.k9.backend.shopee.models.Product;
 import com.k9.backend.shopee.repository.CategoryRepository;
 
-import org.hibernate.Hibernate;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
 

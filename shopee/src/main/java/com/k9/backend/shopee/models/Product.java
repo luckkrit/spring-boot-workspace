@@ -1,5 +1,8 @@
 package com.k9.backend.shopee.models;
 
+import java.util.List;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,11 +13,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.FetchType;
-
-import java.util.List;
-
-import javax.persistence.Column;
 import javax.validation.constraints.NotBlank;
 
 import lombok.AllArgsConstructor;
@@ -28,7 +26,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class Product {
     @Id
-    @SequenceGenerator(name = "productSeqGen", sequenceName = "productSeq", allocationSize = 1)
+    @SequenceGenerator(name = "productSeqGen", sequenceName = "productSeq")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "productSeqGen")
     private Long id;
 

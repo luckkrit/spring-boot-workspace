@@ -1,13 +1,8 @@
 package com.k9.backend.shopee.models;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,6 +14,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "users")
@@ -30,8 +27,8 @@ public class User {
     @NotBlank
     private String password;
     @Id
-    @SequenceGenerator(name = "userSeqGen", sequenceName = "userSeq", initialValue = 11, allocationSize = 100)
-    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "userSeqGen")
+    @SequenceGenerator(name = "userSeqGen", sequenceName = "userSeq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "userSeqGen")
     private Long id;
     @NotBlank
     private String email;

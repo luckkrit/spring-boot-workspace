@@ -6,10 +6,8 @@ import java.util.Optional;
 import com.k9.backend.shopee.dtos.AddProductDTO;
 import com.k9.backend.shopee.dtos.ProductDTO;
 import com.k9.backend.shopee.dtos.UpdateProductDTO;
-import com.k9.backend.shopee.models.Product;
 import com.k9.backend.shopee.services.ProductService;
 
-import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;

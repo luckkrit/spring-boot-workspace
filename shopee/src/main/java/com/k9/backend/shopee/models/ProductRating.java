@@ -1,9 +1,5 @@
 package com.k9.backend.shopee.models;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,6 +10,8 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "product_ratings")
@@ -25,8 +23,8 @@ public class ProductRating {
     private Float rate;
     private Long count;
     @Id
-    @SequenceGenerator(name = "productRatingSeqGen", sequenceName = "productRatingSeq", initialValue = 21, allocationSize = 100)
-    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "productRatingSeqGen")
+    @SequenceGenerator(name = "productRatingSeqGen", sequenceName = "productRatingSeq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "productRatingSeqGen")
     private Long id;
 
     @OneToOne

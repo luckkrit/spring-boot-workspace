@@ -1,13 +1,9 @@
 package com.k9.backend.shopee.models;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
+import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,6 +15,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "carts")
@@ -28,10 +26,10 @@ import lombok.AllArgsConstructor;
 public class Cart {
 
     @NotBlank
-    private String date;
+    private Date date;
     @Id
-    @SequenceGenerator(name = "cartSeqGen", sequenceName = "cartSeq", initialValue = 8, allocationSize = 100)
-    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "cartSeqGen")
+    @SequenceGenerator(name = "cartSeqGen", sequenceName = "cartSeq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cartSeqGen")
     private Long id;
 
     @ManyToOne

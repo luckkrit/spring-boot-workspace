@@ -26,8 +26,8 @@ public class UserDetail {
     @NotBlank
     private String phone;
     @Id
-    @SequenceGenerator(name = "userDetailSeqGen", sequenceName = "userDetailSeq", initialValue = 11, allocationSize = 100)
-    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "userDetailSeqGen")
+    @SequenceGenerator(name = "userDetailSeqGen", sequenceName = "userDetailSeq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "userDetailSeqGen")
     private Long id;
     @NotBlank
     private String email;

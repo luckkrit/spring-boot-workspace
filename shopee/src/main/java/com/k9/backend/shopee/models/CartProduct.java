@@ -23,8 +23,8 @@ public class CartProduct {
 
     private Long quantity;
     @Id
-    @SequenceGenerator(name = "cartProductSeqGen", sequenceName = "cartProductSeq", initialValue = 15, allocationSize = 100)
-    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "cartProductSeqGen")
+    @SequenceGenerator(name = "cartProductSeqGen", sequenceName = "cartProductSeq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cartProductSeqGen")
     private Long id;
 
     @ManyToOne

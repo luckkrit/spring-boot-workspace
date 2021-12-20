@@ -1,25 +1,9 @@
 package com.k9.backend.shopee;
 
-import java.util.List;
-
-import com.k9.backend.shopee.models.Address;
-import com.k9.backend.shopee.models.Product;
-import com.k9.backend.shopee.models.User;
-import com.k9.backend.shopee.repository.AddressRepository;
-import com.k9.backend.shopee.repository.GeolocationRepository;
-import com.k9.backend.shopee.repository.ProductRepository;
-import com.k9.backend.shopee.repository.UserDetailRepository;
-import com.k9.backend.shopee.repository.UserRepository;
-import com.k9.backend.shopee.services.CartService;
-import com.k9.backend.shopee.services.CategoryService;
-import com.k9.backend.shopee.services.ProductService;
-
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class ShopeeApplication {

@@ -21,8 +21,8 @@ import lombok.AllArgsConstructor;
 public class Geolocation {
 
     @Id
-    @SequenceGenerator(name = "geolocationSeqGen", sequenceName = "geolocationSeq", initialValue = 11, allocationSize = 100)
-    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "geolocationSeqGen")
+    @SequenceGenerator(name = "geolocationSeqGen", sequenceName = "geolocationSeq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "geolocationSeqGen")
     private Long id;
     private Float latitude;
     private Float longtitude;
