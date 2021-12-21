@@ -27,7 +27,7 @@ public class User {
     @NotBlank
     private String password;
     @Id
-    @SequenceGenerator(name = "userSeqGen", sequenceName = "userSeq")
+    @SequenceGenerator(name = "userSeqGen", sequenceName = "userSeq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "userSeqGen")
     private Long id;
     @NotBlank

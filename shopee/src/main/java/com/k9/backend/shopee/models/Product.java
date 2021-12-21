@@ -26,7 +26,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class Product {
     @Id
-    @SequenceGenerator(name = "productSeqGen", sequenceName = "productSeq")
+    @SequenceGenerator(name = "productSeqGen", sequenceName = "productSeq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "productSeqGen")
     private Long id;
 

@@ -8,7 +8,11 @@ import java.util.Optional;
 import com.k9.backend.shopee.dtos.CartDTO;
 import com.k9.backend.shopee.dtos.CartProductDTO;
 import com.k9.backend.shopee.models.Cart;
+import com.k9.backend.shopee.models.CartProduct;
+import com.k9.backend.shopee.repository.CartProductRepository;
 import com.k9.backend.shopee.repository.CartRepository;
+import com.k9.backend.shopee.repository.ProductRepository;
+import com.k9.backend.shopee.repository.UserRepository;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,6 +27,9 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class CartService {
     private final CartRepository cartRepository;
+    private final CartProductRepository cartProductRepository;
+    private final UserRepository userRepository;
+    private final ProductRepository productRepository;
     Logger logger = LoggerFactory.getLogger(CartService.class);
 
     public List<CartDTO> getAllCarts(Optional<Integer> limit, Optional<String> sort, Optional<Date> startdate,
@@ -87,4 +94,29 @@ public class CartService {
         return cartsDTO;
     }
 
+    public Optional<CartDTO> addCart(CartDTO cartDTO) {
+        var optionalUser = this.userRepository.findById(cartDTO.getUserId());
+        if (optionalUser.isPresent()) {
+            // before save
+            var cart = new Cart();
+            cart.setDate(cartDTO.getDate());
+            cart.setUser(optionalUser.get());
+            final Cart saveCart = this.cartRepository.save(cart);
+            // after save
+            cartDTO.setId(saveCart.getId());
+            cartDTO.getProducts().forEach(cartProductDTO -> {
+                var optionalProduct = this.productRepository.findById(cartProductDTO.getProductId());
+                if (optionalProduct.isPresent()) {
+                    var cartProduct = new CartProduct();
+                    cartProduct.setCart(saveCart);
+                    cartProduct.setProduct(optionalProduct.get());
+                    cartProduct.setQuantity(cartProductDTO.getQuantity());
+                    this.cartProductRepository.save(cartProduct);
+                }
+            });
+            return Optional.of(cartDTO);
+        } else {
+            return Optional.ofNullable(null);
+        }
+    }
 }

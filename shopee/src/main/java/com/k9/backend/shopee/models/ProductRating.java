@@ -23,7 +23,7 @@ public class ProductRating {
     private Float rate;
     private Long count;
     @Id
-    @SequenceGenerator(name = "productRatingSeqGen", sequenceName = "productRatingSeq")
+    @SequenceGenerator(name = "productRatingSeqGen", sequenceName = "productRatingSeq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "productRatingSeqGen")
     private Long id;
 

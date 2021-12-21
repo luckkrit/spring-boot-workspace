@@ -29,7 +29,7 @@ public class Address {
     @NotBlank
     private String street;
     @Id
-    @SequenceGenerator(name = "addressSeqGen", sequenceName = "addressSeq")
+    @SequenceGenerator(name = "addressSeqGen", sequenceName = "addressSeq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "addressSeqGen")
     private Long id;
 

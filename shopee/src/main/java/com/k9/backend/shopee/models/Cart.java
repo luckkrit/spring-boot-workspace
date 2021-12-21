@@ -12,7 +12,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,12 +24,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Cart {
 
-    @NotBlank
-    private Date date;
     @Id
-    @SequenceGenerator(name = "cartSeqGen", sequenceName = "cartSeq")
+    @SequenceGenerator(name = "cartSeqGen", sequenceName = "cartSeq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cartSeqGen")
     private Long id;
+
+    private Date date;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
