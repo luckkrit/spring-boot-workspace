@@ -13,8 +13,10 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -51,4 +53,25 @@ public class CartController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<CartDTO> putCart(@PathVariable Long id, @RequestBody CartDTO cartDTO) {
+        var optionalCartDTO = this.cartService.updateCart(id, cartDTO);
+        if (optionalCartDTO.isPresent()) {
+            return new ResponseEntity<>(optionalCartDTO.get(), HttpStatus.NO_CONTENT);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<CartDTO> patchCart(@PathVariable Long id, @RequestBody CartDTO cartDTO) {
+        var optionalCartDTO = this.cartService.updateCart(id, cartDTO);
+        if (optionalCartDTO.isPresent()) {
+            return new ResponseEntity<>(optionalCartDTO.get(), HttpStatus.NO_CONTENT);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 }

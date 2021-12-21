@@ -72,7 +72,7 @@ public class CartService {
             var cartProducts = cart.getCartProducts();
             var cartDTO = new CartDTO();
             var cartProductsDTO = new ArrayList<CartProductDTO>();
-            cartDTO.setProducts(cartProductsDTO);
+            cartDTO.setCartProducts(cartProductsDTO);
             cartDTO.setDate(cart.getDate());
             cartDTO.setId(cart.getId());
             var user = cart.getUser();
@@ -104,7 +104,39 @@ public class CartService {
             final Cart saveCart = this.cartRepository.save(cart);
             // after save
             cartDTO.setId(saveCart.getId());
-            cartDTO.getProducts().forEach(cartProductDTO -> {
+            cartDTO.getCartProducts().forEach(cartProductDTO -> {
+                var optionalProduct = this.productRepository.findById(cartProductDTO.getProductId());
+                if (optionalProduct.isPresent()) {
+                    var cartProduct = new CartProduct();
+                    cartProduct.setCart(saveCart);
+                    cartProduct.setProduct(optionalProduct.get());
+                    cartProduct.setQuantity(cartProductDTO.getQuantity());
+                    this.cartProductRepository.save(cartProduct);
+                }
+            });
+            return Optional.of(cartDTO);
+        } else {
+            return Optional.ofNullable(null);
+        }
+    }
+
+    public Optional<CartDTO> updateCart(Long cartId, CartDTO cartDTO) {
+        var optionalCart = this.cartRepository.findById(cartId);
+        var optionalUser = this.userRepository.findById(cartDTO.getUserId());
+        if (optionalCart.isPresent() && optionalUser.isPresent()) {
+            // before save
+            var cart = optionalCart.get();
+            cart.setDate(cartDTO.getDate());
+            cart.setUser(optionalUser.get());
+            final Cart saveCart = this.cartRepository.save(cart);
+            // after save
+            // delete cart that link to cart product table
+            var oldCartProducts = cart.getCartProducts();
+            oldCartProducts.forEach(cartProduct -> {
+                this.cartProductRepository.delete(cartProduct);
+            });
+            cartDTO.setId(saveCart.getId());
+            cartDTO.getCartProducts().forEach(cartProductDTO -> {
                 var optionalProduct = this.productRepository.findById(cartProductDTO.getProductId());
                 if (optionalProduct.isPresent()) {
                     var cartProduct = new CartProduct();
