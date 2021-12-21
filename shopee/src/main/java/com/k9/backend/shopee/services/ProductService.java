@@ -106,10 +106,16 @@ public class ProductService {
                 }
         }
 
-        public void deleteProduct(Long productId) {
+        public Optional<ProductDTO> deleteProduct(Long productId) {
                 var optionalProduct = this.productRepository.findById(productId);
                 if (optionalProduct.isPresent()) {
                         this.productRepository.delete(optionalProduct.get());
+                        var product = optionalProduct.get();
+                        var productDTO = new ProductDTO(product.getId(), product.getTitle(), product.getPrice(),
+                                        product.getCategory().getTitle(), product.getDescription(), product.getImage());
+                        return Optional.of(productDTO);
+                } else {
+                        return Optional.ofNullable(null);
                 }
         }
 }

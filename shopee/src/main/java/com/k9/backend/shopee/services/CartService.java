@@ -38,6 +38,15 @@ public class CartService {
         return this.getAllCartsDTO(pageable, startdate, enddate);
     }
 
+    public Optional<CartDTO> getCart(Long cartId) {
+        var optionalCart = this.cartRepository.findById(cartId);
+        if (optionalCart.isPresent()) {
+            return Optional.of(this.getCartDTO(optionalCart.get()));
+        } else {
+            return Optional.ofNullable(null);
+        }
+    }
+
     public List<CartDTO> getAllCartsByUser(Long userId) {
         var carts = this.cartRepository.findByUserId(userId);
         return this.getAllCartProductsDTO(carts);
@@ -69,29 +78,34 @@ public class CartService {
     private List<CartDTO> getAllCartProductsDTO(List<Cart> carts) {
         var cartsDTO = new ArrayList<CartDTO>();
         carts.forEach(cart -> {
-            var cartProducts = cart.getCartProducts();
-            var cartDTO = new CartDTO();
-            var cartProductsDTO = new ArrayList<CartProductDTO>();
-            cartDTO.setCartProducts(cartProductsDTO);
-            cartDTO.setDate(cart.getDate());
-            cartDTO.setId(cart.getId());
-            var user = cart.getUser();
-            if (user != null) {
-                cartDTO.setUserId(user.getId());
-            }
-            cartsDTO.add(cartDTO);
-            cartProducts.forEach(cartProduct -> {
-                var product = cartProduct.getProduct();
-                var cartProductDTO = new CartProductDTO();
-                if (product != null) {
-                    cartProductDTO.setProductId(product.getId());
-                    cartProductDTO.setQuantity(cartProduct.getQuantity());
-                    cartProductsDTO.add(cartProductDTO);
-                }
-            });
-
+            cartsDTO.add(this.getCartDTO(cart));
         });
         return cartsDTO;
+    }
+
+    private CartDTO getCartDTO(Cart cart) {
+        var cartProducts = cart.getCartProducts();
+        var cartsDTO = new ArrayList<CartDTO>();
+        var cartDTO = new CartDTO();
+        var cartProductsDTO = new ArrayList<CartProductDTO>();
+        cartDTO.setCartProducts(cartProductsDTO);
+        cartDTO.setDate(cart.getDate());
+        cartDTO.setId(cart.getId());
+        var user = cart.getUser();
+        if (user != null) {
+            cartDTO.setUserId(user.getId());
+        }
+        cartsDTO.add(cartDTO);
+        cartProducts.forEach(cartProduct -> {
+            var product = cartProduct.getProduct();
+            var cartProductDTO = new CartProductDTO();
+            if (product != null) {
+                cartProductDTO.setProductId(product.getId());
+                cartProductDTO.setQuantity(cartProduct.getQuantity());
+                cartProductsDTO.add(cartProductDTO);
+            }
+        });
+        return cartDTO;
     }
 
     public Optional<CartDTO> addCart(CartDTO cartDTO) {
@@ -147,6 +161,20 @@ public class CartService {
                 }
             });
             return Optional.of(cartDTO);
+        } else {
+            return Optional.ofNullable(null);
+        }
+    }
+
+    public Optional<CartDTO> deleteCart(Long cartId) {
+        var optionalCart = this.cartRepository.findById(cartId);
+        if (optionalCart.isPresent()) {
+            var cartProducts = optionalCart.get().getCartProducts();
+            cartProducts.forEach(cartProduct -> {
+                this.cartProductRepository.delete(cartProduct);
+            });
+            this.cartRepository.deleteById(cartId);
+            return Optional.of(this.getCartDTO(optionalCart.get()));
         } else {
             return Optional.ofNullable(null);
         }

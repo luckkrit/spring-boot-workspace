@@ -77,9 +77,14 @@ public class ProductController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteProduct(@PathVariable Long id) {
-        this.productService.deleteProduct(id);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<ProductDTO> deleteProduct(@PathVariable Long id) {
+        var optionalProductDTO = this.productService.deleteProduct(id);
+        if (optionalProductDTO.isPresent()) {
+            return ResponseEntity.ok(optionalProductDTO.get());
+        } else {
+
+            return ResponseEntity.noContent().build();
+        }
     }
 
 }

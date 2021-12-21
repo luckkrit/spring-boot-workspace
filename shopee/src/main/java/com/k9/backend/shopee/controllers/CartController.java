@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,6 +38,16 @@ public class CartController {
             @RequestParam("startdate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Optional<Date> startdate,
             @RequestParam("enddate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Optional<Date> enddate) {
         return ResponseEntity.ok(this.cartService.getAllCarts(limit, sort, startdate, enddate));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<CartDTO> getCart(@PathVariable Long id) {
+        var optionalCartDTO = this.cartService.getCart(id);
+        if (optionalCartDTO.isPresent()) {
+            return ResponseEntity.ok(optionalCartDTO.get());
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @GetMapping("/user/{id}")
@@ -74,4 +85,13 @@ public class CartController {
         }
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<CartDTO> deleteCart(@PathVariable Long id) {
+        var optionalCartDTO = this.cartService.deleteCart(id);
+        if (optionalCartDTO.isPresent()) {
+            return ResponseEntity.ok(optionalCartDTO.get());
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }
