@@ -29,8 +29,6 @@ public class UserDetail {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "userDetailSeqGen")
     private Long id;
     @NotBlank
-    private String email;
-    @NotBlank
     private String lastname;
 
     @OneToOne(mappedBy = "userDetail")
