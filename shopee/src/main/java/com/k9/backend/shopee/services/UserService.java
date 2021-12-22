@@ -60,6 +60,8 @@ public class UserService {
             var geolocation = address.getLocation();
             if (geolocation != null) {
                 var geolocationDTO = new GeolocationDTO();
+                geolocationDTO.setLatitude(geolocation.getLatitude());
+                geolocationDTO.setLongitude(geolocation.getLongtitude());
                 addressDTO.setGeolocation(geolocationDTO);
             }
             userDTO.setAddress(addressDTO);
