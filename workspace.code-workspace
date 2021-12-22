@@ -7,7 +7,8 @@
 	"settings": {
 		"java.configuration.updateBuildConfiguration": "automatic",
 		"java.dependency.packagePresentation": "flat",
-		"java.saveActions.organizeImports": true
+		"java.saveActions.organizeImports": true,
+		"debug.focusWindowOnBreak": false
 	},
 	"extensions": {
 		"recommendations": [
