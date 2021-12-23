@@ -201,4 +201,15 @@ public class UserService {
         userDTO.setPhone(saveUserDetail.getPhone());
         return Optional.of(userDTO);
     }
+
+    public Optional<UserDTO> deleteUser(Long userId) {
+        var optionalUser = this.userRepository.findById(userId);
+        if (optionalUser.isPresent()) {
+            var user = optionalUser.get();
+            this.userRepository.delete(user);
+            return Optional.of(this.getUserDTO(user));
+        } else {
+            return Optional.ofNullable(null);
+        }
+    }
 }

@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -60,9 +61,20 @@ public class UserController {
     public ResponseEntity<UserDTO> putUser(@PathVariable Long id, @RequestBody UpdateUserDTO updateUserDTO) {
         var optionalUserDTO = this.userService.updateUser(id, updateUserDTO);
         if (optionalUserDTO.isPresent()) {
-            return ResponseEntity.ok(optionalUserDTO.get());
+            return ResponseEntity.noContent().build();
         } else {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<UserDTO> patchUser(@PathVariable Long id, @RequestBody UpdateUserDTO updateUserDTO) {
+        var optionalUserDTO = this.userService.updateUser(id, updateUserDTO);
+        if (optionalUserDTO.isPresent()) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 }

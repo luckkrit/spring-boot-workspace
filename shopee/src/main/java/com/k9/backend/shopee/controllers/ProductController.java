@@ -59,7 +59,7 @@ public class ProductController {
             @RequestBody UpdateProductDTO updateProductDTO) {
         var optionalProductDTO = productService.updateProduct(id, updateProductDTO);
         if (optionalProductDTO.isPresent()) {
-            return ResponseEntity.ok(optionalProductDTO.get());
+            return ResponseEntity.noContent().build();
         } else {
             return ResponseEntity.notFound().build();
         }
@@ -70,7 +70,7 @@ public class ProductController {
             @RequestBody UpdateProductDTO updateProductDTO) {
         var optionalProductDTO = productService.updateProduct(id, updateProductDTO);
         if (optionalProductDTO.isPresent()) {
-            return ResponseEntity.ok(optionalProductDTO.get());
+            return ResponseEntity.noContent().build();
         } else {
             return ResponseEntity.notFound().build();
         }
@@ -80,7 +80,7 @@ public class ProductController {
     public ResponseEntity<ProductDTO> deleteProduct(@PathVariable Long id) {
         var optionalProductDTO = this.productService.deleteProduct(id);
         if (optionalProductDTO.isPresent()) {
-            return ResponseEntity.ok(optionalProductDTO.get());
+            return ResponseEntity.noContent().build();
         } else {
 
             return ResponseEntity.noContent().build();
