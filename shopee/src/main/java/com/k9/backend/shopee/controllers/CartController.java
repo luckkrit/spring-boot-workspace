@@ -69,7 +69,7 @@ public class CartController {
     public ResponseEntity<CartDTO> putCart(@PathVariable Long id, @RequestBody CartDTO cartDTO) {
         var optionalCartDTO = this.cartService.updateCart(id, cartDTO);
         if (optionalCartDTO.isPresent()) {
-            return new ResponseEntity<>(optionalCartDTO.get(), HttpStatus.NO_CONTENT);
+            return ResponseEntity.ok(optionalCartDTO.get());
         } else {
             return ResponseEntity.notFound().build();
         }
@@ -79,7 +79,7 @@ public class CartController {
     public ResponseEntity<CartDTO> patchCart(@PathVariable Long id, @RequestBody CartDTO cartDTO) {
         var optionalCartDTO = this.cartService.updateCart(id, cartDTO);
         if (optionalCartDTO.isPresent()) {
-            return new ResponseEntity<>(optionalCartDTO.get(), HttpStatus.NO_CONTENT);
+            return ResponseEntity.ok(optionalCartDTO.get());
         } else {
             return ResponseEntity.notFound().build();
         }

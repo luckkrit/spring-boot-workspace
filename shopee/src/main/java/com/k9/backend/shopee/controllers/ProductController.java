@@ -59,7 +59,7 @@ public class ProductController {
             @RequestBody UpdateProductDTO updateProductDTO) {
         var optionalProductDTO = productService.updateProduct(id, updateProductDTO);
         if (optionalProductDTO.isPresent()) {
-            return new ResponseEntity<>(optionalProductDTO.get(), HttpStatus.NO_CONTENT);
+            return ResponseEntity.ok(optionalProductDTO.get());
         } else {
             return ResponseEntity.notFound().build();
         }
@@ -70,7 +70,7 @@ public class ProductController {
             @RequestBody UpdateProductDTO updateProductDTO) {
         var optionalProductDTO = productService.updateProduct(id, updateProductDTO);
         if (optionalProductDTO.isPresent()) {
-            return new ResponseEntity<>(optionalProductDTO.get(), HttpStatus.NO_CONTENT);
+            return ResponseEntity.ok(optionalProductDTO.get());
         } else {
             return ResponseEntity.notFound().build();
         }
